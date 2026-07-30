@@ -25,6 +25,11 @@ mongoose.connect(mongoUri)
     process.exit(1);
   });
 
+// Rota para a Raiz (Evita o "Rota não encontrada" ao acessar a URL principal)
+app.get('/', (req, res) => {
+  res.json({ msg: 'API rodando com sucesso e conectada ao banco!' });
+});
+
 // Rotas
 app.use('/api/auth', require('./routes/auth.routes'));
 app.use('/api/projects', require('./routes/project.routes'));
